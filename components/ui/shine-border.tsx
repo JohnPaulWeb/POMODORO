@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef } from "react";
 
 
@@ -5,7 +7,7 @@ interface ShineBorderProps {
     children: React.ReactNode;
     className?: string;
     borderClassName?: string;
-    duration?: number; // Duration in milliseconds
+    duration?: number; 
 }
 
 export function ShineBorder({ children, className = "", borderClassName = "", duration = 2000 }: ShineBorderProps) {
@@ -17,7 +19,29 @@ export function ShineBorder({ children, className = "", borderClassName = "", du
         
 
         const handleMouseMove = (e: MouseEvent) => {
+            const { left, top, width, height } = container.getBoundingClientRect()
+            const x = (e.clientX - left ) / width
+            const y = (e.clientY - top) / height
 
+            container.style.setProperty
+            ("--mouse-x", `${x * 100}%`)
+            container.style.setProperty
+            ("--mouse-y", `${y * 100}%`)
         }
-    })
+
+        container.addEventListener("mousemove", handleMouseMove)
+        return () => container.removeEventListener("mousemove", handleMouseMove)
+    }, [])
+
+
+    return (
+        <div ref={containerRef} className={`group relative ${className}`} style={{ "--shrine-duration": `${duration}ms` } as React.CSSProperties}>
+
+            <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `radial-gradient(600px circle at var (--mouse-x)
+                 var(--mouse-y), rgba(255, 255, 255, 0.1), transparent 40%)`}}>
+
+            </div>
+
+        </div>
+    )
 }

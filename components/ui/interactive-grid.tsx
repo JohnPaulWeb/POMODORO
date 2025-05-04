@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef } from "react"
 
 
@@ -43,7 +45,8 @@ export function InteractiveGrid({ className = "", containerClassName = "", point
             canvas.height = height * dpr
             ctx.scale(dpr, dpr)
             canvas.style.width = `${width}px`
-            canvas.
+            canvas.style.width = `${height}px`
+            return {width, height }
         }
     })
 }
