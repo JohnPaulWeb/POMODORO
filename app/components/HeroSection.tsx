@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { InteractiveGrid } from "@/components/ui/interactive-grid";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { Play } from "lucide-react";
 
 
 export default function HeroSection() {
@@ -21,6 +23,12 @@ export default function HeroSection() {
                 <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
                     Focus Timer helps you stay productive and manage your time effectively.
                 </p>
+
+                <div className="flex gap-4 justify-center">
+                    <Button variant="outline" className="gap-2 border-white/10 bg-white/5 hover:bg-white/10">
+                      <Play className="w-4 h-4" />
+                    </Button>
+                </div>
               </div>
             </ShineBorder>
         </section>
